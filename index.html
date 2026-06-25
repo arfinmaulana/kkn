@@ -1,50 +1,174 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0f172a" />
-  <title>Clean YouTube + ImgBB Demo</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Arsip visual UM BBM 2026 Desa Kedungbanteng.">
+  <title>UM BBM 2026 Desa Kedungbanteng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="hero">
-    <div class="container">
-      <p class="eyebrow">GitHub Pages Demo</p>
-      <h1>Video clean dari YouTube + Foto dari ImgBB</h1>
-      <p class="lead">
-        Video tidak langsung memuat iframe YouTube. Website menampilkan thumbnail dulu,
-        lalu YouTube baru dimuat setelah tombol play ditekan.
-      </p>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="Kembali ke beranda">
+        <span class="brand-logo" id="brandLogoWrap"><img id="brandLogo" alt="Logo" hidden></span>
+        <span>
+          <strong id="brandTitle">ARSIP KKN</strong>
+          <small id="brandSubtitle">Desa Kedungbanteng</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Navigasi utama">
+        <a href="#home">Beranda</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#videos">Video</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#team">Tim</a>
+        <a href="#about">Tentang</a>
+      </nav>
+
+      <a class="contact-btn" id="contactBtn" href="#footer">Kontak</a>
     </div>
   </header>
 
-  <main class="container">
-    <section class="section">
-      <div class="section-heading">
-        <p class="eyebrow">Lazy video</p>
-        <h2>Video</h2>
-        <p>Data video dibaca dari <code>data/videos.json</code>.</p>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content reveal">
+        <p class="eyebrow" id="heroEyebrow">Bangkit dan Berdaya</p>
+        <h1 id="heroTitle">UM BBM 2026<br>Desa Kedungbanteng</h1>
+        <p id="heroText">Catatan visual tentang perjalanan, kebersamaan, dan momen kecil selama pengabdian.</p>
+        <div class="hero-actions">
+          <a href="#gallery" class="btn primary">Lihat Galeri</a>
+          <a href="#videos" class="btn ghost">Lihat Video</a>
+        </div>
       </div>
-      <div id="videoGrid" class="grid" aria-live="polite"></div>
     </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <p class="eyebrow">Image fallback</p>
-        <h2>Foto</h2>
-        <p>Data foto dibaca dari <code>data/photos.json</code>. Foto memakai direct link ImgBB + fallback.</p>
+    <section class="section intro-section" id="about">
+      <div class="container intro-grid">
+        <div class="story reveal">
+          <span class="section-kicker">Sekilas Cerita</span>
+          <h2>Catatan kecil dari Kedungbanteng</h2>
+          <p id="siteDescription">Website ini menjadi arsip visual tentang perjalanan, kebersamaan, kegiatan, dan momen kecil selama pelaksanaan KKN di desa.</p>
+        </div>
+        <div class="stats-grid reveal" id="statsGrid"></div>
       </div>
-      <div id="photoGrid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section class="section compact-section" id="activitiesSection">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Jejak Kegiatan</span>
+          <h2>Potongan besar perjalanan</h2>
+        </div>
+        <div class="activity-grid" id="activityGrid"></div>
+      </div>
+    </section>
+
+    <section class="section compact-section" id="gallery">
+      <div class="container">
+        <div class="section-head with-actions reveal">
+          <div>
+            <span class="section-kicker">Galeri Momen</span>
+            <h2>Foto-foto yang nanti tersimpan di sini</h2>
+          </div>
+          <div class="filter-pills" id="galleryFilters" aria-label="Filter galeri"></div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section compact-section" id="videos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Video Memories</span>
+          <h2>Dokumentasi bergerak</h2>
+        </div>
+        <div class="video-grid" id="videoGrid"></div>
+      </div>
+    </section>
+
+    <section class="section bottom-section">
+      <div class="container bottom-grid">
+        <section class="panel reveal" id="timeline">
+          <div class="panel-head">
+            <span class="section-kicker">Timeline Perjalanan</span>
+            <h2>Alur singkat KKN</h2>
+          </div>
+          <div class="timeline" id="timelineList"></div>
+        </section>
+
+        <section class="panel reveal" id="organization">
+          <div class="panel-head">
+            <span class="section-kicker">Struktur Organisasi</span>
+            <h2>Susunan tim</h2>
+          </div>
+          <div class="org-chart" id="orgChart"></div>
+        </section>
+
+        <section class="panel reveal" id="team">
+          <div class="panel-head team-head">
+            <div>
+              <span class="section-kicker">Tim KKN</span>
+              <h2>Wajah di balik arsip</h2>
+            </div>
+          </div>
+          <div class="team-grid" id="teamGrid"></div>
+        </section>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>Demo sederhana untuk GitHub Pages.</p>
+  <footer class="footer" id="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-logo small" id="footerLogoWrap"><img id="footerLogo" alt="Logo" hidden></span>
+          <div>
+            <strong id="footerTitle">ARSIP KKN</strong>
+            <small id="footerSubtitle">Desa Kedungbanteng</small>
+          </div>
+        </div>
+        <p id="footerDescription">Arsip visual UM BBM 2026 Desa Kedungbanteng.</p>
+      </div>
+      <div>
+        <h3>Menu</h3>
+        <a href="#home">Beranda</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#videos">Video</a>
+        <a href="#team">Tim</a>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <a id="instagramLink" href="#" target="_blank" rel="noopener">Instagram</a>
+        <a id="tiktokLink" href="#" target="_blank" rel="noopener">TikTok</a>
+        <span id="footerLocation">Kedungbanteng, Malang</span>
+      </div>
+      <div class="made">
+        <p>Made with ♥</p>
+        <small id="madeText">UM BBM Desa Kedungbanteng Tahun 2026</small>
+      </div>
     </div>
   </footer>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">×</button>
+    <img id="lightboxImg" alt="">
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
