@@ -1,0 +1,10 @@
+[
+  {
+    "id": "video-001",
+    "title": "Video YouTube Pertama",
+    "category": "youtube",
+    "youtubeId": "sdhh7AYzsTY",
+    "status": "show",
+    "featured": true
+  }
+]

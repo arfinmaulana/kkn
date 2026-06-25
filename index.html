@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo YouTube + ImgBB Gallery</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">GitHub Pages Demo</p>
+      <h1>Website Video YouTube & Foto ImgBB</h1>
+      <p class="subtitle">
+        Video diambil dari YouTube, foto diambil dari ImgBB, lalu daftar kontennya diatur lewat file JSON.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <div class="section-heading">
+        <h2>Video dari YouTube</h2>
+        <p>Data video dibaca dari <code>data/videos.json</code>.</p>
+      </div>
+      <div id="video-list" class="grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Foto dari ImgBB</h2>
+        <p>Data foto dibaca dari <code>data/photos.json</code>.</p>
+      </div>
+      <div id="photo-list" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Demo sederhana untuk GitHub Pages.</p>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
