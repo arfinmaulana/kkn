@@ -1,82 +1,64 @@
-# Demo YouTube + ImgBB untuk GitHub Pages
+# Clean YouTube + ImgBB Demo untuk GitHub Pages
 
-Ini adalah demo website sederhana untuk menampilkan:
+Demo ini dibuat untuk menampilkan:
 
-- Video dari YouTube
-- Foto dari ImgBB
-- Data konten dari file JSON
+- Video dari YouTube dengan tampilan clean dan lazy loading.
+- Foto dari ImgBB dengan direct link, cache buster, referrer policy, dan fallback image proxy.
+- Website statis yang bisa langsung di-host di GitHub Pages.
 
 ## File penting
 
 ```text
+index.html
+css/style.css
+js/main.js
 data/videos.json
 data/photos.json
 ```
 
-## Link yang sudah dimasukkan
+## Cara ganti video
 
-Foto ImgBB:
+Buka `data/videos.json` lalu ganti `youtubeId`.
 
-```text
-https://i.ibb.co/cjZDTmJ/Screenshot-144.png
-```
-
-YouTube ID:
-
-```text
-sdhh7AYzsTY
-```
-
-## Cara update foto
-
-Buka `data/photos.json`, lalu ganti bagian `image`.
-
-Contoh:
-
-```json
-{
-  "id": "photo-002",
-  "title": "Foto Baru",
-  "category": "gallery",
-  "image": "https://i.ibb.co/xxxxx/foto-baru.png",
-  "status": "show"
-}
-```
-
-## Cara update video
-
-Buka `data/videos.json`, lalu ganti bagian `youtubeId`.
-
-Contoh:
-
-```json
-{
-  "id": "video-002",
-  "title": "Video Baru",
-  "category": "youtube",
-  "youtubeId": "ISI_ID_YOUTUBE_DI_SINI",
-  "status": "show"
-}
-```
-
-Kalau link YouTube seperti ini:
+Contoh link YouTube:
 
 ```text
 https://youtu.be/sdhh7AYzsTY?si=r-_8veQLF7uGjQLK
 ```
 
-Maka YouTube ID-nya adalah:
+Yang dipakai hanya:
 
 ```text
 sdhh7AYzsTY
 ```
 
-## Cara publish ke GitHub Pages
+## Cara ganti foto ImgBB
 
-1. Buat repo baru di GitHub.
-2. Upload semua file dari folder ini.
-3. Masuk ke `Settings`.
-4. Buka `Pages`.
-5. Pilih source branch `main`.
-6. Pilih folder `/root`.
-7. Klik save.
+Buka `data/photos.json` lalu ganti bagian `image`.
+
+Gunakan direct image link, biasanya bentuknya:
+
+```text
+https://i.ibb.co/xxxxx/nama-file.png
+```
+
+Bukan viewer link seperti:
+
+```text
+https://ibb.co/xxxxx
+```
+
+Kalau foto sulit tampil di beberapa HP, tambahkan fallback di `fallbacks`.
+
+## Cara upload ke GitHub Pages
+
+1. Extract ZIP ini.
+2. Upload semua file ke repo GitHub.
+3. Buka Settings → Pages.
+4. Pilih branch `main` dan folder `/root`.
+5. Save.
+
+## Catatan video
+
+Sebelum diklik, YouTube iframe tidak dimuat. Halaman hanya menampilkan thumbnail dan tombol play.
+Setelah diklik, player YouTube akan muncul karena sumber videonya tetap dari YouTube.

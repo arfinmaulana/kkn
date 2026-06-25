@@ -1,18 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demo YouTube + ImgBB Gallery</title>
-  <link rel="stylesheet" href="./css/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Clean YouTube + ImgBB Demo</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="site-header">
+  <header class="hero">
     <div class="container">
       <p class="eyebrow">GitHub Pages Demo</p>
-      <h1>Website Video YouTube & Foto ImgBB</h1>
-      <p class="subtitle">
-        Video diambil dari YouTube, foto diambil dari ImgBB, lalu daftar kontennya diatur lewat file JSON.
+      <h1>Video clean dari YouTube + Foto dari ImgBB</h1>
+      <p class="lead">
+        Video tidak langsung memuat iframe YouTube. Website menampilkan thumbnail dulu,
+        lalu YouTube baru dimuat setelah tombol play ditekan.
       </p>
     </div>
   </header>
@@ -20,25 +22,29 @@
   <main class="container">
     <section class="section">
       <div class="section-heading">
-        <h2>Video dari YouTube</h2>
+        <p class="eyebrow">Lazy video</p>
+        <h2>Video</h2>
         <p>Data video dibaca dari <code>data/videos.json</code>.</p>
       </div>
-      <div id="video-list" class="grid"></div>
+      <div id="videoGrid" class="grid" aria-live="polite"></div>
     </section>
 
     <section class="section">
       <div class="section-heading">
-        <h2>Foto dari ImgBB</h2>
-        <p>Data foto dibaca dari <code>data/photos.json</code>.</p>
+        <p class="eyebrow">Image fallback</p>
+        <h2>Foto</h2>
+        <p>Data foto dibaca dari <code>data/photos.json</code>. Foto memakai direct link ImgBB + fallback.</p>
       </div>
-      <div id="photo-list" class="grid"></div>
+      <div id="photoGrid" class="grid" aria-live="polite"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>Demo sederhana untuk GitHub Pages.</p>
+  <footer class="footer">
+    <div class="container">
+      <p>Demo sederhana untuk GitHub Pages.</p>
+    </div>
   </footer>
 
-  <script src="./js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

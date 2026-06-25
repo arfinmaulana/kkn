@@ -4,7 +4,12 @@
     "title": "Screenshot 144",
     "category": "gallery",
     "image": "https://i.ibb.co/cjZDTmJ/Screenshot-144.png",
-    "status": "show",
-    "featured": true
+    "viewerLink": "https://ibb.co/1kP82SZ",
+    "fallbacks": [
+      "https://i.ibb.co/cjZDTmJ/Screenshot-144.png?v=4",
+      "https://images.weserv.nl/?url=i.ibb.co/cjZDTmJ/Screenshot-144.png&output=webp&n=-1",
+      "https://images.weserv.nl/?url=https%3A%2F%2Fi.ibb.co%2FcjZDTmJ%2FScreenshot-144.png&output=webp&n=-1"
+    ],
+    "status": "show"
   }
 ]
