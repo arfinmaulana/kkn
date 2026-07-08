@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UM BBM 2026 | Coming Soon</title>
+
+  <style>
+    :root {
+      --dark: #10251b;
+      --green: #214b36;
+      --green-2: #2f6f4e;
+      --soft: #e8f7df;
+      --cream: #fff8e8;
+      --paper: #fff4d6;
+      --paper-old: #e9d8ad;
+      --gold: #f2bd42;
+      --white: #ffffff;
+      --line: rgba(255, 255, 255, .22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      background: #153b2a;
+    }
+
+    body {
+      min-height: 100svh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--white);
+      background: linear-gradient(145deg, #0d2118, #25533b 70%, #10271e);
+      display: grid;
+      place-items: center;
+      padding: clamp(12px, 3vw, 24px);
+      overflow-x: hidden;
+    }
+
+    .card {
+      width: min(100%, 930px);
+      padding: clamp(24px, 6vw, 62px);
+      border-radius: clamp(22px, 5vw, 40px);
+      background: rgba(24, 72, 49, .88);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .24);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .10);
+      border: 1px solid rgba(255, 255, 255, .16);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: clamp(18px, 3vw, 26px);
+    }
+
+    .badge-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex: 0 0 auto;
+    }
+
+    .intro {
+      max-width: 660px;
+      margin: 0 auto 18px;
+      color: var(--soft);
+      font-size: clamp(14px, 2vw, 17px);
+      line-height: 1.65;
+    }
+
+    h1 {
+      font-size: clamp(44px, 11vw, 110px);
+      line-height: .9;
+      letter-spacing: clamp(-4px, -.4vw, -2px);
+      margin-bottom: 18px;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .village {
+      font-size: clamp(17px, 2.8vw, 25px);
+      color: var(--cream);
+      margin-bottom: clamp(24px, 4vw, 34px);
+      font-weight: 700;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(10px, 2vw, 16px);
+      margin-bottom: 28px;
+    }
+
+    .time-card {
+      --fall-x: 8px;
+      --fall-rotate: 7deg;
+      position: relative;
+      min-height: clamp(104px, 16vw, 150px);
+      padding: 38px 8px 15px;
+      border-radius: clamp(16px, 3vw, 22px);
+      background: var(--paper);
+      color: var(--dark);
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
+    }
+
+    .time-card:nth-child(even) {
+      --fall-x: -10px;
+      --fall-rotate: -8deg;
+    }
+
+    .calendar-top {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 32px;
+      background: #efbd45;
+      border-bottom: 1px dashed rgba(16, 37, 27, .35);
+      z-index: 5;
+    }
+
+    .rings {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      translate: -50% 0;
+      display: flex;
+      gap: 9px;
+      z-index: 6;
+    }
+
+    .rings i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(16, 37, 27, .55);
+    }
+
+    .number,
+    .old-page span {
+      display: block;
+      font-size: clamp(32px, 6vw, 62px);
+      line-height: 1;
+      font-weight: 900;
+      color: var(--dark);
+      letter-spacing: -1px;
+      overflow-wrap: anywhere;
+    }
+
+    .label,
+    .old-page small {
+      display: block;
+      margin-top: 9px;
+      font-size: clamp(11px, 1.8vw, 12px);
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--green-2);
+    }
+
+    .old-page {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 32px;
+      bottom: 0;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: linear-gradient(#fff7df, var(--paper-old));
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(0) rotate(0deg);
+      transform-origin: 50% 0;
+      clip-path: polygon(0 0, 7% 5px, 14% 0, 23% 5px, 32% 0, 42% 5px, 52% 0, 62% 5px, 72% 0, 82% 5px, 92% 0, 100% 5px, 100% 100%, 0 100%);
+    }
+
+    .old-page::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 9px;
+      background: repeating-linear-gradient(90deg, rgba(16, 37, 27, .28) 0 7px, transparent 7px 13px);
+    }
+
+    .time-card.tearing .old-page {
+      animation: tearFall .62s ease-in forwards;
+    }
+
+    .time-card.tearing .number,
+    .time-card.tearing .label {
+      animation: showNew .28s ease-out both;
+    }
+
+    @keyframes tearFall {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+      16% {
+        opacity: 1;
+        transform: translateY(1px) rotate(-1.5deg);
+      }
+      32% {
+        opacity: 1;
+        transform: translateY(14px) rotate(2deg);
+      }
+      72% {
+        opacity: .7;
+        transform: translate(var(--fall-x), 78%) rotate(calc(var(--fall-rotate) * .75));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(var(--fall-x) * 1.6), 142%) rotate(var(--fall-rotate));
+      }
+    }
+
+    @keyframes showNew {
+      from { opacity: .45; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .launch {
+      color: #eef8ee;
+      font-size: clamp(13px, 2vw, 14px);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .launch strong { color: var(--gold); }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 13px 23px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 14px;
+      font-weight: 900;
+      touch-action: manipulation;
+    }
+
+    button:active { transform: translateY(1px); }
+    button:focus-visible { outline: 3px solid rgba(255,255,255,.7); outline-offset: 3px; }
+
+    .brand {
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, .16);
+      letter-spacing: clamp(3px, 1vw, 6px);
+      font-weight: 900;
+      color: var(--cream);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 8px;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--soft);
+      text-transform: uppercase;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, .55);
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-box {
+      width: min(100%, 620px);
+      max-height: 86svh;
+      overflow-y: auto;
+      padding: clamp(22px, 4vw, 28px);
+      border-radius: 24px;
+      background: #fbfff4;
+      color: #10281f;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    }
+
+    .modal-box h2 {
+      color: #234f38;
+      margin-bottom: 16px;
+      font-size: clamp(22px, 4vw, 28px);
+    }
+
+    .modal-box h3 {
+      margin-top: 16px;
+      margin-bottom: 7px;
+      font-size: 15px;
+      color: var(--green-2);
+    }
+
+    .modal-box p,
+    .modal-box li {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    ul { padding-left: 18px; }
+
+    .close {
+      width: 100%;
+      margin-top: 22px;
+      background: var(--green-2);
+      color: white;
+    }
+
+    @media (max-width: 760px) {
+      body { align-items: start; }
+      .card { margin-block: 8px; }
+      .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 430px) {
+      .card { padding: 24px 16px; }
+      .intro { line-height: 1.55; }
+      .countdown { gap: 10px; }
+      .time-card { min-height: 102px; }
+      .rings { gap: 8px; }
+      .rings i { width: 7px; height: 7px; }
+      .brand { margin-top: 26px; }
+    }
+
+    @media (max-width: 340px) {
+      .countdown { grid-template-columns: 1fr; }
+      h1 { font-size: 42px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Dokumentasi Digital
+    </div>
+
+    <p class="intro">
+      Website dokumentasi UM BBM sedang dipersiapkan untuk menyimpan cerita,
+      kegiatan, dan momen belajar bersama masyarakat.
+    </p>
+
+    <h1>Coming <span>Soon</span></h1>
+
+    <p class="village">Desa Kedungbanteng</p>
+
+    <section class="countdown" aria-label="Hitung mundur menuju launching 30 Agustus 2026">
+      <div class="time-card" id="card-days">
+        <div class="calendar-top"></div>
+        <div class="rings"><i></i><i></i><i></i></div>
+        <div class="old-page" aria-hidden="true">
+          <span id="page-days">00</span>
+          <small>Hari</small>
+        </div>
+        <strong class="number" id="days">00</strong>
+        <small class="label">Hari</small>
+      </div>
+
+      <div class="time-card" id="card-hours">
+        <div class="calendar-top"></div>
+        <div class="rings"><i></i><i></i><i></i></div>
+        <div class="old-page" aria-hidden="true">
+          <span id="page-hours">00</span>
+          <small>Jam</small>
+        </div>
+        <strong class="number" id="hours">00</strong>
+        <small class="label">Jam</small>
+      </div>
+
+      <div class="time-card" id="card-minutes">
+        <div class="calendar-top"></div>
+        <div class="rings"><i></i><i></i><i></i></div>
+        <div class="old-page" aria-hidden="true">
+          <span id="page-minutes">00</span>
+          <small>Menit</small>
+        </div>
+        <strong class="number" id="minutes">00</strong>
+        <small class="label">Menit</small>
+      </div>
+
+      <div class="time-card" id="card-seconds">
+        <div class="calendar-top"></div>
+        <div class="rings"><i></i><i></i><i></i></div>
+        <div class="old-page" aria-hidden="true">
+          <span id="page-seconds">00</span>
+          <small>Detik</small>
+        </div>
+        <strong class="number" id="seconds">00</strong>
+        <small class="label">Detik</small>
+      </div>
+    </section>
+
+    <p class="launch">
+      Launching <strong>30 Agustus 2026</strong> • 00:00 WIB
+    </p>
+
+    <button type="button" onclick="openModal()">Lihat Identitas</button>
+
+    <div class="brand">
+      UM BBM 2026
+      <small>Kedungbanteng</small>
+    </div>
+  </main>
+
+  <section class="modal" id="modal" onclick="closeFromOutside(event)" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Identitas UM BBM 2026</h2>
+
+      <h3>Desa</h3>
+      <p>Desa Kedungbanteng, Sumbermanjing Wetan, Kabupaten Malang, Jawa Timur.</p>
+
+      <h3>Kepala Desa</h3>
+      <p>Ariv Iskandar Fatoni, S.E.</p>
+
+      <h3>Dosen Pembimbing Lapangan</h3>
+      <p>Mahfudi Sahly Subandi, M.Pd.</p>
+
+      <h3>Anggota Kelompok</h3>
+      <ul>
+        <li>Abdullah Gibran Ali</li>
+        <li>Afrian Dwi Wahyudi</li>
+        <li>Aldi Dwi Saputra</li>
+        <li>Amrul Bagas Ardiansyah</li>
+        <li>Ananta Deva Pratama G.P</li>
+        <li>Arfin Maulana</li>
+        <li>Emillia Sartika Devi</li>
+        <li>Erico Septianto</li>
+        <li>Moch. Dandhi Dwiasmy Purwantoro</li>
+        <li>Muchammad Naufal Hilmi Alwan</li>
+      </ul>
+
+      <button type="button" class="close" onclick="closeModal()">Tutup</button>
+    </div>
+  </section>
+
+  <script>
+    const targetDate = new Date("2026-08-30T00:00:00+07:00").getTime();
+    const values = { days: null, hours: null, minutes: null, seconds: null };
+    const timers = {};
+
+    function setValue(id, value) {
+      const numberEl = document.getElementById(id);
+      const cardEl = document.getElementById("card-" + id);
+      const pageEl = document.getElementById("page-" + id);
+      if (!numberEl || !cardEl || !pageEl) return;
+
+      if (values[id] !== null && values[id] !== value) {
+        pageEl.textContent = values[id];
+        numberEl.textContent = value;
+        cardEl.classList.remove("tearing");
+        void cardEl.offsetWidth;
+        cardEl.classList.add("tearing");
+
+        clearTimeout(timers[id]);
+        timers[id] = setTimeout(function () {
+          cardEl.classList.remove("tearing");
+        }, 640);
+      } else {
+        numberEl.textContent = value;
+      }
+
+      values[id] = value;
+    }
+
+    function updateCountdown() {
+      const distance = targetDate - Date.now();
+      const countdownEl = document.querySelector(".countdown");
+      const launchEl = document.querySelector(".launch");
+
+      if (distance <= 0) {
+        countdownEl.innerHTML = '<div class="time-card" style="grid-column:1/-1"><div class="calendar-top"></div><div class="rings"><i></i><i></i><i></i></div><strong class="number">Launch</strong><small class="label">Resmi Dibuka</small></div>';
+        launchEl.innerHTML = 'Website <strong>UM BBM 2026</strong> telah resmi diluncurkan.';
+        clearInterval(countdownTimer);
+        return;
+      }
+
+      const days = Math.floor(distance / 86400000);
+      const hours = Math.floor(distance / 3600000) % 24;
+      const minutes = Math.floor(distance / 60000) % 60;
+      const seconds = Math.floor(distance / 1000) % 60;
+
+      setValue("days", String(days));
+      setValue("hours", String(hours).padStart(2, "0"));
+      setValue("minutes", String(minutes).padStart(2, "0"));
+      setValue("seconds", String(seconds).padStart(2, "0"));
+    }
+
+    function openModal() {
+      const modal = document.getElementById("modal");
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("modal");
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    function closeFromOutside(event) {
+      if (event.target.id === "modal") closeModal();
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeModal();
+    });
+
+    updateCountdown();
+    const countdownTimer = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
